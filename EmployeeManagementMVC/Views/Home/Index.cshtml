@@ -1,0 +1,164 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container-fluid py-5">
+
+    <!-- Hero Section -->
+    <div class="row align-items-center py-5">
+        <div class="col-lg-7">
+            <h2 class="fw-bold text-primary mb-3">
+                Employee Management System
+            </h2>
+
+
+            <div class="mb-4">
+                <h4 class="text-muted fw-normal mb-2">
+                    Welcome
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <span class="text-primary fw-semibold">
+                            @User.Identity.Name
+                        </span>
+                    }
+                </h4>
+
+                <h1 class="display-4 fw-bold mb-0">
+                    Manage Your Team
+                    <span class="text-primary">Smarter & Better.</span>
+                </h1>
+            </div>
+
+
+            <p class="lead text-muted mb-4">
+                A simple and efficient platform to manage employees,
+                organize departments, and monitor your workforce
+                from one place.
+            </p>
+
+            <div class="d-flex gap-3 flex-wrap">
+                <a asp-controller="Employee"
+                   asp-action="Index"
+                   class="btn btn-primary btn-lg">
+                    <i class="bi bi-people-fill me-2"></i>
+                    View Employees
+                </a>
+
+                <a asp-page="/EmployeesSummary"
+                   class="btn btn-outline-primary btn-lg">
+                    <i class="bi bi-bar-chart-fill me-2"></i>
+                    View Dashboard
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-5 mt-5 mt-lg-0">
+            <div class="bg-primary bg-opacity-10 rounded-4 p-5 text-center">
+                <i class="bi bi-building text-primary"
+                   style="font-size: 130px;"></i>
+
+                <h3 class="mt-4 fw-bold">Your Workforce</h3>
+                <p class="text-muted mb-0">
+                    Everything you need to manage your employees.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="row g-4 mt-4">
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-2">Total Employees</p>
+                        <h2 class="fw-bold mb-0">@ViewBag.TotalEmployees</h2>
+                    </div>
+                    <div class="bg-primary bg-opacity-10 rounded-3 p-3">
+                        <i class="bi bi-people-fill text-primary fs-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-2">Total Departments</p>
+                        <h2 class="fw-bold mb-0">@ViewBag.TotalDepartments</h2>
+                    </div>
+                    <div class="bg-success bg-opacity-10 rounded-3 p-3">
+                        <i class="bi bi-diagram-3-fill text-success fs-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-2">Average Salary</p>
+                        <h2 class="fw-bold mb-0">
+                            @(((decimal)ViewBag.AverageSalary).ToString("N0"))
+                        </h2>
+                    </div>
+                    <div class="bg-warning bg-opacity-10 rounded-3 p-3">
+                        <i class="bi bi-cash-stack text-warning fs-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="my-5" />
+
+    <!-- Features Section -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">What You Can Do</h2>
+        <p class="text-muted">
+            Manage your organization with powerful tools.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
+                <i class="bi bi-people text-primary fs-1 mb-3"></i>
+                <h4 class="fw-bold">Employee Management</h4>
+                <p class="text-muted mb-0">
+                    Add, view, update, and manage employee information
+                    in one organized place.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
+                <i class="bi bi-shield-check text-primary fs-1 mb-3"></i>
+                <h4 class="fw-bold">Secure Access</h4>
+                <p class="text-muted mb-0">
+                    Protect your system with authentication and
+                    role-based authorization.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4">
+                <i class="bi bi-graph-up-arrow text-primary fs-1 mb-3"></i>
+                <h4 class="fw-bold">Dashboard & Reports</h4>
+                <p class="text-muted mb-0">
+                    Monitor employees, departments, and salary
+                    statistics through a simple dashboard.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

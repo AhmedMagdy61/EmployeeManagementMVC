@@ -1,0 +1,35 @@
+﻿
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# User-specific files and secrets
+secrets.json
+**/secrets.json
+*.local.json
+appsettings.Local.json
+.env
+.env.*
+
+# HTTPS development certificates
+*.pfx
+*.p12
+
+# Logs
+*.log
+logs/
+
+# Operating system files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,30 @@
+﻿@model EmployeeManagementMVC.Models.Employee
+
+@{
+    ViewData["Title"] = "Delete Employee";
+}
+
+<h1>Delete Employee</h1>
+
+<h3 class="text-danger">
+    Are you sure you want to delete this employee?
+</h3>
+
+<div class="card p-3">
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Salary:</strong> @Model.Salary.ToString("N2")</p>
+    <p><strong>Department:</strong> @Model.Department</p>
+    <p><strong>Hire Date:</strong> @Model.HireDate.ToShortDateString()</p>
+
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <button type="submit" class="btn btn-danger">
+            Confirm Delete
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>

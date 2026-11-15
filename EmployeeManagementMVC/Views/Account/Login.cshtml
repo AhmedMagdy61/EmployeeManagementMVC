@@ -1,0 +1,67 @@
+﻿@model EmployeeManagementMVC.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<div class="row">
+    <div class="col-md-5">
+
+        <form asp-action="Login" method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email"
+                       type="email"
+                       class="form-control"
+                       autocomplete="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password"
+                       type="password"
+                       class="form-control"
+                       autocomplete="current-password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">
+                    Remember Me
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Login
+            </button>
+
+        </form>
+
+        <div class="my-3">
+            <form asp-action="GoogleLogin" method="post">
+                @Html.AntiForgeryToken()
+
+                <button type="submit" class="btn btn-outline-dark w-100">
+                    <i class="bi bi-google"></i>
+                    Sign in with Google
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
