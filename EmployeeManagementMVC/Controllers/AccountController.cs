@@ -117,20 +117,37 @@ namespace EmployeeManagementMVC.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult GoogleLogin()
+        public IActionResult GoogleLogin(string returnUrl = "/Account/Login")
         {
             var properties = _signInManager
                 .ConfigureExternalAuthenticationProperties(
                     "Google",
-                    Url.Action("GoogleResponse", "Account")
+                    Url.Action("GoogleResponse", "Account", new { returnUrl })
                 );
+
+            properties.Items["returnUrl"] = returnUrl;
 
             return Challenge(properties, "Google");
         }
 
         [HttpGet]
-        public async Task<IActionResult> GoogleResponse()
+        [HttpGet]
+        public async Task<IActionResult> GoogleResponse(
+         string? returnUrl = null,
+         string? error = null)
         {
+            returnUrl = Url.IsLocalUrl(returnUrl)
+                ? returnUrl
+                : Url.Action("Index", "Home")!;
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                TempData["ExternalLoginError"] =
+                    "Google login was cancelled. Please try again.";
+
+                return Redirect(returnUrl);
+            }
+
             var info = await _signInManager.GetExternalLoginInfoAsync();
 
             if (info == null)

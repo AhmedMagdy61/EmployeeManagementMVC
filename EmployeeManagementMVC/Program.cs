@@ -74,6 +74,28 @@ builder.Services.AddAuthentication()
 
         options.ClientSecret =
             builder.Configuration["Authentication:Google:ClientSecret"]!;
+        options.Events.OnRemoteFailure = context =>
+        {
+            context.HandleResponse();
+
+
+            var properties = context.Properties;
+
+            var returnUrl = "/Account/Login";
+
+            if (properties?.Items.TryGetValue("returnUrl", out var savedReturnUrl) == true
+                && !string.IsNullOrEmpty(savedReturnUrl))
+            {
+                returnUrl = savedReturnUrl;
+            }
+
+            context.Response.Redirect(
+                "/Account/GoogleResponse?error=cancelled&returnUrl=" +
+                Uri.EscapeDataString(returnUrl)
+            );
+
+            return Task.CompletedTask;
+        };
     });
 
 builder.Services.AddEndpointsApiExplorer();

@@ -45,13 +45,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-controller="Home"
-                               asp-action="Privacy">
-                                Privacy
-                            </a>
-                        </li>
+
 
                         @if (User.Identity?.IsAuthenticated == true)
                         {
@@ -123,8 +117,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - EmployeeManagementMVC -
-            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2026 - EmployeeManagementMVC 
         </div>
     </footer>
 
